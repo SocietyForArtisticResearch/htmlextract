@@ -77,9 +77,11 @@ if not os.path.isdir(folder):
 
 # write text sections to html files
 for idx,section in enumerate(pages):
+    sectionId = "section" + '{0:04d}'.format(pagesidxs[idx]+1)
     filename = '{0:04d}'.format(pagesidxs[idx]+1) + ".html"
     fileOut = codecs.open(os.path.join(folder, filename), "w",  encoding='utf-8')
-    fileOut.write(section)
+    sectionString = '<div class="rc-html-reset" id="{id}">{section}</div>'.format(id=sectionId, section=section)
+    fileOut.write(sectionString)
     fileOut.close()
 
 # sort image files by numbers in filename
